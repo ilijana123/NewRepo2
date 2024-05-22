@@ -1,0 +1,60 @@
+﻿@model Store.ViewModels.KnigaAvtorEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Avtor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="avtor.Id" />
+            <div class="form-group">
+                <label asp-for="avtor.Ime" class="control-label"></label>
+                <input asp-for="avtor.Ime" class="form-control" />
+                <span asp-validation-for="avtor.Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="avtor.Prezime" class="control-label"></label>
+                <input asp-for="avtor.Prezime" class="form-control" />
+                <span asp-validation-for="avtor.Prezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="avtor.Pol" class="control-label"></label>
+                <input asp-for="avtor.Pol" class="form-control" />
+                <span asp-validation-for="avtor.Pol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="avtor.Nacionalnost" class="control-label"></label>
+                <input asp-for="avtor.Nacionalnost" class="form-control" />
+                <span asp-validation-for="avtor.Nacionalnost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="avtor.DatumRagjanje" class="control-label"></label>
+                <input asp-for="avtor.DatumRagjanje" class="form-control" />
+                <span asp-validation-for="avtor.DatumRagjanje" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Avtori</label>
+                <select asp-for="SelectedKnigas" class="form-control js-example-basic-multiple"
+                        asp-items="Model.KnigaList"> </select>
+                <span asp-validation-for="SelectedKnigas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

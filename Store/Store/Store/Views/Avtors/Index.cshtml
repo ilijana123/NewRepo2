@@ -1,0 +1,78 @@
+﻿@model Store.ViewModels.AvtorViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form asp-controller="Avtors" asp-action="Index" method="get">
+    <p>
+        Ime: <input type="text" asp-for="SearchStringI" />
+        <input type="submit" value="Filter" />
+        Prezime: <input type="text" asp-for="SearchStringP" />
+        <input type="submit" value="Filter" />
+        Nacionalnost: <input type="text" asp-for="SearchStringN" />
+        <input type="submit" value="Filter" />
+</form>
+    </p>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].Ime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].Pol)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].Nacionalnost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].DatumRagjanje)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Avtori[0].Knigi)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Avtori) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pol)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nacionalnost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumRagjanje)
+                </td>
+                <td>
+                    @foreach (var kniga in item.Knigi)
+{
+                    <a asp-controller="Knigas" asp-action="Details" asp-route-id="@kniga.KnigaId"> @kniga.Kniga.Naslov </a>  <br />
+}
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>
